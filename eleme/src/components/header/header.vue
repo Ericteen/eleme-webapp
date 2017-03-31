@@ -8,4 +8,7 @@
 	export default {}
 </script>
 
-<style lang='stylus'></style>
+<style lang='stylus'>
+	
+</style>
+
