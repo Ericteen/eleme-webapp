@@ -29,13 +29,16 @@
 									<div class="price">
 										<span class='now'>￥{{ food.price }}</span><span class='old' v-show='food.oldPrice'>￥{{ food.oldPrice }}</span>
 									</div>
+									<div class="cartcontrol-wrapper">
+										<cartcontrol :food='food'></cartcontrol>
+									</div>
 								</div>
 							</li>
 						</ul>
 					</li>
 				</ul>
 			</div>
-			<shopcart :delivery-price='seller.deliveryPrice' :min-price='seller.minPrice'></shopcart>
+			<shopcart :selectFoods='selectFoods' :delivery-price='seller.deliveryPrice' :min-price='seller.minPrice'></shopcart>
 		</div>
 	</div>
 </template>
@@ -43,6 +46,7 @@
 <script>
 import BScroll from 'better-scroll'
 import Shopcart from '@/components/shopcart/shopcart'
+import Cartcontrol from '@/components/cartcontrol/cartcontrol'
 
 	const ERR_OK = 0
 
@@ -69,6 +73,17 @@ import Shopcart from '@/components/shopcart/shopcart'
 					}
 				}
 				return 0
+			},
+			selectFoods () {
+				let foods = []
+				this.goods.forEach((good) => {
+					good.foods.forEach((food) => {
+						if (food.count) {
+							foods.push(food)
+						}
+					})
+				})
+				return foods
 			}
 		},
 		created () {
@@ -117,13 +132,14 @@ import Shopcart from '@/components/shopcart/shopcart'
 			}
 		},
 		components: {
-			Shopcart
+			Shopcart,
+			Cartcontrol
 		}
 	}
 </script>
 
 <style lang='stylus'>
-	@import '../../common/stylus/mixin.styl'
+	@import "../../common/stylus/mixin.styl"
 	.goods
 		display: flex
 		position: absolute
@@ -224,5 +240,8 @@ import Shopcart from '@/components/shopcart/shopcart'
 							text-decoration: line-through
 							font-size: 10px
 							color: rgb(147, 153, 159)
-
+					.cartcontrol-wrapper
+						position: absolute
+						right: 0
+						bottom: 12px
 </style>
