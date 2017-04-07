@@ -60,6 +60,12 @@ import BScroll from 'better-scroll'
 import Cartcontrol from '@/components/cartcontrol/cartcontrol'
 	export default {
 		props: {
+			selectFoods: {
+				type: Array,
+				default () {
+					return []
+				}
+			},
 			deliveryPrice: {
 				type: Number,
 				default: 0
@@ -238,6 +244,7 @@ import Cartcontrol from '@/components/cartcontrol/cartcontrol'
 			display: flex
 			background: #141d27
 			font-size: 0
+			color: rgba(255, 255, 255, 0.4)
 			.content-left
 				flex: 1
 				.logo-wrapper
@@ -249,8 +256,7 @@ import Cartcontrol from '@/components/cartcontrol/cartcontrol'
 					padding: 6px
 					width: 56px
 					height: 56px
-					box-sizing: border-box
-					
+					box-sizing: border-box					
 					border-radius: 50%
 					background: #141d27
 					.logo
@@ -259,10 +265,28 @@ import Cartcontrol from '@/components/cartcontrol/cartcontrol'
 						border-radius: 50%
 						text-align: center
 						background: #2b343c
+						&.highlight
+							background: rgb(0, 160, 220)
 						.icon-shopping_cart
 							line-height: 44px
 							font-size: 24px
 							color: #80858a
+							&.highlight
+								color: #fff
+					.num
+						position: absolute
+						top: 0
+						right: 0
+						width: 24px
+						height: 16px
+						line-height: 16px
+						text-align: center
+						border-radius: 16px
+						font-size: 9px
+						font-weight: 700
+						color: #fff
+						background: rgb(240, 20, 20)
+						box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4)
 				.price
 					display: inline-block
 					vertical-align: top
@@ -273,13 +297,13 @@ import Cartcontrol from '@/components/cartcontrol/cartcontrol'
 					border-right: 1px solid rgba(255, 255, 255, 0.1)
 					font-size: 16px
 					font-weight: 700
-					color: rgba(255, 255, 255, 0.4) 
+					&.highlight
+						color: #fff
 				.desc
 					display: inline-block
 					vertical-align: top
 					line-height: 24px
 					margin: 12px 0 0 12px
-					color: rgba(255, 255, 255, 0.4)
 					font-size: 10px
 			.content-right
 				flex: 0 0 105px
