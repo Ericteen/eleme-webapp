@@ -170,7 +170,7 @@ import Cartcontrol from '@/components/cartcontrol/cartcontrol'
 				if (this.totalPrice < this.minPrice) {
 					return
 				}
-				window.alert(`支付 ${this.totalPrice} 元`)
+				window.alert(`您需要支付 ${this.totalPrice + this.deliveryPrice} 元`)
 			}
 		},
 		computed: {
