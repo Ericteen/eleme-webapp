@@ -16,15 +16,14 @@
 					{{ payDesc }}
 				</div>
 			</div>
-			<div class="ball-container">
-				<div v-for='ball in balls'>
-					<transition name='drop' @before-enter='beforeDrop' @enter='dropping' @after-drop='afterDrop'>
-						<div class="ball" v-show='ball.show'>
-							<div class="inner inner-hook"></div>
-						</div>
-					</transition>
-				</div>
-				
+		</div>
+		<div class="ball-container">
+			<div v-for='ball in balls'>
+				<transition name='drop' @before-enter='beforeDrop' @enter='dropping' @after-drop='afterDrop'>
+					<div class="ball" v-show='ball.show'>
+						<div class="inner inner-hook"></div>
+					</div>
+				</transition>
 			</div>
 		</div>
 	</div>
@@ -66,7 +65,42 @@
 					{
 						show: false
 					}
-				]
+				],
+				dropBalls: [],
+				fold: true
+			}
+		},
+		methods: {
+			drop (el) {
+				for (let i =0; i < this.balls.length; i++) {
+					let ball = this.balls[i]
+					if (!ball.show) {
+						ball.show = true
+						ball.el = el
+						this.dropBalls.push(ball)
+						return
+					}
+				}
+			},
+			addFood (target) {
+				this.drop(target)
+			},
+			beforeDrop (el) {
+				let count = this.balls.length
+				while (count--) {
+					let ball = this.balls[count]
+					if (ball.show) {
+						// 获得视口的位置
+						let rect = ball.el.getBoundingClientRect()
+						let x = rect.left - 32
+					}
+				}
+			},
+			dropping (el) {
+
+			},
+			afterDrop (el) {
+
 			}
 		},
 		computed: {
@@ -192,4 +226,18 @@
 					&.enough
 						background: #00b43c
 						color: #fff
+		.ball-contaoner
+			.ball
+				position: fixed
+				left: 32px
+				bottom: 22px
+				z-index: 200
+				transition: all 0.4s cubic-bezier(0.49, -0.29, 0.75, 0.41)
+				.inner
+					width: 16px
+					height: 16px
+					border-radius: 50%
+					background: rgb(0, 160, 220)
+					transition: all 0.4s linear
+
 </style>
