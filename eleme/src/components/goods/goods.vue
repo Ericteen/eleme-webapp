@@ -30,7 +30,7 @@
 										<span class='now'>￥{{ food.price }}</span><span class='old' v-show='food.oldPrice'>￥{{ food.oldPrice }}</span>
 									</div>
 									<div class="cartcontrol-wrapper">
-										<cartcontrol :food='food'></cartcontrol>
+										<cartcontrol @add='addFood' :food='food'></cartcontrol>
 									</div>
 								</div>
 							</li>
