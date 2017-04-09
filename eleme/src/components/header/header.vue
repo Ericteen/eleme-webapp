@@ -96,7 +96,7 @@
 	}
 </script>
 
-<style lang='stylus'>
+<style lang='stylus' scoped>
 @import '../../common/stylus/mixin'
 	.header
 		position: relative
@@ -202,6 +202,7 @@
 				font-size: 10px
 				right: 12px
 				top: 8px
+
 		.background
 			position: absolute
 			top: 0
