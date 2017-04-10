@@ -2,8 +2,8 @@
 	<div class='ratingselect'>
 		<div class="rating-type border-down-1px">
 			<span @click='select(2, $event)' class='block positive' :class="{'active': selectType===2}">{{ desc.all }}<span class='count'>{{ ratings.length }}</span></span>
-			<span @click='select(1, $event)' class='block positive' :class="{'active': selectType===1}">{{ desc.positive }}<span class='count'>{{ positives.length }}</span></span>
-			<span @click='select(0, $event)' class='block negative' :class="{'active': selectType===0}">{{ desc.negative }}<span class='count'>{{ negatives.length }}</span></span>
+			<span @click='select(0, $event)' class='block positive' :class="{'active': selectType===0}">{{ desc.positive }}<span class='count'>{{ positives.length }}</span></span>
+			<span @click='select(1, $event)' class='block negative' :class="{'active': selectType===1}">{{ desc.negative }}<span class='count'>{{ negatives.length }}</span></span>
 		</div>
 		<div @click='toggleContent' class="switch" :class="{'on': onlyContent}">
 			<span class="icon-check_circle"></span>
@@ -52,7 +52,6 @@ const ALL = 2
 				this.$emit('select', type)
 			},
 			toggleContent (event) {
-				console.log('click')
 				if (!event._constructed) {
 					return
 				}
@@ -80,14 +79,15 @@ const ALL = 2
 	.ratingselect
 		.rating-type
 			padding: 18px 0
-			maigin: 0 18px
+			margin: 0 18px
 			border-down-1px(rgba(7, 17, 27, 0.1))
+			font-size: 0
 			.block
 				display: inline-block
 				padding: 8px 12px
-				mmargin-right: 8px
-				border-radius: 2px
+				margin-right: 8px
 				line-height: 16px
+				border-radius: 1px
 				font-size: 12px
 				color: rgb(77, 85, 93)
 				&.active
