@@ -23,8 +23,17 @@
 					<transition class="fade">
 						<div @click.stop.prevent='addFirst' class="buy" v-show='!food.count || food.count===0'>加入购物车</div>
 					</transition>
-					
-				</div>	
+				</div>
+				<split v-show='food.info'></split>
+				<div class="info" v-show='food.info'>
+					<h1 class="title">商品信息</h1>
+					<p class="text">{{ food.info }}</p>
+				</div>
+				<split></split>
+				<div class="rating">
+					<h1 class="title">商品评价</h1>
+					<ratingselect @select='selectRating' @toggle='toggleContent' :selectType='selectType' :onlyContent='onlyContent' :desc='desc' :ratings='food.ratings'></ratingselect>
+				</div>
 			</div>
 		</div>
 	</transition>
@@ -34,6 +43,12 @@
 import Vue from 'vue'
 import BScroll from 'better-scroll'
 import Cartcontrol from '@/components/cartcontrol/cartcontrol'
+import Split from '@/components/split/split'
+import Ratingselect from '@/components/ratingselect/ratingselect'
+
+// const POSITIVE = 1
+// const NEGATIVE = 0
+const ALL = 2
 
 	export default {
 		props: {
@@ -43,12 +58,21 @@ import Cartcontrol from '@/components/cartcontrol/cartcontrol'
 		},
 		data () {
 			return {
-				showFlag: false
+				showFlag: false,
+				selectType: ALL,
+				onlyContent: true,
+				desc: {
+					all: '全部',
+					positive: '推荐',
+					negative: '吐槽'
+				}
 			}
 		},
 		methods: {
 			show () {
 				this.showFlag = true
+				this.selectType = ALL
+				this.onlyContent = true
 				this.$nextTick(() => {
 					if (!this.scroll) {
 						this.scroll = new BScroll(this.$refs.food, {
@@ -71,10 +95,24 @@ import Cartcontrol from '@/components/cartcontrol/cartcontrol'
 			},
 			addFood (target) {
 				this.$emit('add', target)
+			},
+			selectRating (type) {
+				this.selectType = type
+				this.$nextTick(() => {
+					this.scroll.refresh()
+				})
+			},
+			toggleContent () {
+				this.onlyContent = !this.onlyContent
+				this.$nextTick(() => {
+					this.scroll.refresh()
+				})
 			}
 		},
 		components: {
-			Cartcontrol
+			Cartcontrol,
+			Split,
+			Ratingselect
 		}
 	}
 </script>
@@ -167,4 +205,24 @@ import Cartcontrol from '@/components/cartcontrol/cartcontrol'
 				&.fade-enter, &.fade-leave-active
 					opacity: 0
 					z-index: -1
+
+		.info
+			padding: 18px
+			.title
+				line-height: 14px
+				margin-bottom: 6px
+				font-size: 14px
+				color: rgb(7, 17, 27)
+			.text
+				line-height: 24px
+				padding: 0 8px
+				font-size: 12px
+				color: rgb(77, 85, 93)
+		.rating
+			padding-top: 18px
+			.title
+				line-height:  14px
+				margin-left: 18px
+				font-size: 14px
+				color: rgb(7, 17, 27)
 </style>
