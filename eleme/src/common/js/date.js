@@ -1,12 +1,12 @@
-export function formateDate (date, fmt) {
-	if (/(y+)/.text(fmt)) {
+export function dateFormat (date, fmt) {
+	if (/(y+)/.test(fmt)) {
 		fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
 	}
 	let o = {
 		'M+': date.getMonth() + 1,
-		'd+': date.getDay(),
-		'm+': date.getMinutes(),
+		'd+': date.getDate(),
 		'h+': date.getHours(),
+		'm+': date.getMinutes(),
 		's+': date.getSeconds()
 	}
 	for (let k in o) {
@@ -18,6 +18,6 @@ export function formateDate (date, fmt) {
 	return fmt
 }
 
-function padLeftZero(str) {
+function padLeftZero (str) {
 	return ('00' + str).substr(str.length)
 }
