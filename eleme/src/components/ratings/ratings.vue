@@ -41,7 +41,7 @@
 							<div class="text">{{ rating.text }}</div>
 							<div class="recommend" v-show='rating.recommend && rating.recommend.length'>
 								<span class="icon-thumb_up"></span>
-								<span v-for='item in rating.recommend'>{{ item }}</span>
+								<span class="item" v-for='item in rating.recommend'>{{ item }}</span>
 							</div>
 							<div class="time">
 								{{ rating.rateTime | formatDate}}
@@ -93,7 +93,7 @@ const ERR_OK = 0
 		filters: {
 			formatDate (time) {
 				let date = new Date(time)
-				return dateFormat(date, 'yyy-MM-dd hh:mm')
+				return dateFormat(date, 'yyyy-MM-dd hh:mm')
 			}
 		},
 		methods: {
@@ -247,7 +247,7 @@ const ERR_OK = 0
 							color: rgb(0, 160, 220)
 						.item
 							padding: 0 6px
-							border: 1px solid rgb(7, 17, 27, 0.1)
+							border: 1px solid rgba(7, 17, 27, 0.1)
 							border-radius: 1px
 							color: rgb(147, 153, 159)
 							background: #fff
