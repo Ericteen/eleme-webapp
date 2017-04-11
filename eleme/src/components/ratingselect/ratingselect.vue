@@ -93,7 +93,7 @@ const ALL = 2
 				&.active
 					color: #fff
 				.count
-					margin-left: 2px
+					margin-left: 4px
 					font-size: 8px
 				&.positive
 					background: rgba(0, 160, 220, 0.2)
