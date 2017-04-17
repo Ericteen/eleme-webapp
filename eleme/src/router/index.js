@@ -7,9 +7,10 @@ import Seller from '@/components/seller/seller'
 Vue.use(Router)
 
 export default new Router({
+    mode: 'history',
     routes: [{
         path: '/',
-        component: Goods
+        redirect: '/goods'
     }, {
         path: '/goods',
         component: Goods

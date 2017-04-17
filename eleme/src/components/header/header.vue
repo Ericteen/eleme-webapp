@@ -149,9 +149,9 @@
 							bg-image('discount_1')
 						&.guarantee
 							bg-image('guarantee_1')
-            			&.invoice
+            &.invoice
 							bg-image('invoice_1')
-            			&.special
+            &.special
 							bg-image('special_1')
 					.text
 						line-height: 12px

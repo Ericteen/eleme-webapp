@@ -230,7 +230,7 @@ import Food from '@/components/food/food'
 					margin-bottom: 0
 				.icon
 					flex: 0 0 57px
-					margin: 10px
+					margin-right: 10px
 				.content
 					flex: 1
 					.name
