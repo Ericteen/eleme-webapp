@@ -1,8 +1,15 @@
+/**
+ * 解析 url 参数
+ * @return {Object} 返回对象
+ * @example ?id=12345&a=b
+ * @return {Object} {id: 23456, a: b}
+ */
 export function urlParse () {
 	let url = window.location.search
 	let obj = {}
 	let reg = /[?&][^?&]+=[^?&]+/g
 	let arr = url.match(reg)
+	// ['?id=12345', '&a=b']
 	if (arr) {
 		arr.forEach((item) => {
 			let tempArr = item.substring(1).split('=')

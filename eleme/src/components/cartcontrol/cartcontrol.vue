@@ -17,7 +17,7 @@ import Vue from 'vue'
 			}
 		},
 		methods: {
-			addCart () {
+			addCart (event) {
 				if (!event._constructed) {
 					return
 				}
